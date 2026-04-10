@@ -1,0 +1,17 @@
+# https://docs.docker.com/reference/compose-file/
+
+name: windows-7
+
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: devcontainer.dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - pnpm-store:/workspace/.pnpm-store
+      - node-modules:/workspace/node_modules
+
+volumes:
+  pnpm-store:
+  node-modules:

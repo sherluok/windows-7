@@ -1,0 +1,9 @@
+packages:
+  - ./.github/actions/*
+  - ./.vscode/extensions/*
+  - ./integrations/*
+  - ./packages/*
+  - ./src
+
+allowBuilds:
+  esbuild: false

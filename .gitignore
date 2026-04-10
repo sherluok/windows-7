@@ -1,0 +1,6 @@
+.pnpm-store/
+node_modules/
+cache/
+out/
+
+*.secrets
