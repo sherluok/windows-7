@@ -6,5 +6,11 @@
 	"service": "devcontainer",
 	"workspaceFolder": "/workspace",
 	"postCreateCommand": "bash .devcontainer/post-create-command.sh",
-	"forwardPorts": [3000]
+	"forwardPorts": [3000],
+	"portsAttributes": {
+		"3000": {
+			"label": "Static File Server",
+			"onAutoForward": "openBrowserOnce"
+		}
+	}
 }
