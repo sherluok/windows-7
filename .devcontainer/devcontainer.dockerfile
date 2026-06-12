@@ -46,25 +46,12 @@ rm -f /tmp/websockify.zip
 ln -s "/usr/local/novnc/noVNC-${NOVNC_VERSION}/utils/novnc_proxy" "/usr/local/bin"
 EOF
 
-USER vscode
+# USER vscode
 
 # 配置 TigerVNC
-RUN <<EOF
-touch /home/vscode/.Xauthority
-chmod 600 /home/vscode/.Xauthority
+COPY --chown=vscode:vscode --chmod=0700 vnc-xstartup.sh /home/vscode/.config/tigervnc/xstartup
 
-mkdir -p /home/vscode/.config/tigervnc
-cat > /home/vscode/.config/tigervnc/xstartup <<-'EOF'
-	#!/bin/sh
-	unset SESSION_MANAGER
-	unset DBUS_SESSION_BUS_ADDRESS
-	exec fluxbox
-	EOF
-chmod +x /home/vscode/.config/tigervnc/xstartup
-EOF
-
-# 配置 fluxbox
-RUN mkdir -p /home/vscode/.fluxbox
-COPY fluxbox-apps.txt /home/vscode/.fluxbox/apps
+# 配置 Fluxbox
+COPY --chown=vscode:vscode fluxbox-apps.txt /home/vscode/.fluxbox/apps
 
 CMD ["sleep", "infinity"]
