@@ -1,0 +1,9 @@
+[app] (class=webdesktopwallpaper)
+  [Deco]        {NONE}
+  [Layer]       {12}
+  [Sticky]      {yes}
+  [Position]    (TopLeft) {0 0}
+  [Dimensions]  {100% 100%}
+  [FocusHidden] {yes}
+  [IconHidden]  {yes}
+[end]

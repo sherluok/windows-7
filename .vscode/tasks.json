@@ -1,0 +1,47 @@
+{
+  "tasks": [
+    {
+      "label": "tiger vnc",
+      "type": "shell",
+      "command": "tigervncserver :1 -geometry 1280x800 -depth 24 -localhost -SecurityTypes None --I-KNOW-THIS-IS-INSECURE -fg",
+      "isBackground": true,
+      "problemMatcher": [],
+    },
+    {
+      "label": "no vnc",
+      "type": "shell",
+      "command": "novnc_proxy --listen \"localhost:6080\" --vnc \"localhost:5901\"",
+      "isBackground": true,
+      "problemMatcher": [],
+    },
+    {
+      "label": "serve wallpaper",
+      "type": "shell",
+      "command": "pnpm exec serve ./src",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+          "file": 1,
+          "location": 2,
+          "message": 3,
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "┌",
+          "endsPattern": "┘",
+        },
+      },
+    },
+    {
+      "label": "open wallpaper",
+      "dependsOn": [
+        "serve wallpaper",
+      ],
+      "type": "shell",
+      "command": "DISPLAY=:1 chromium --no-sandbox --disable-dev-shm-usage --class=webdesktopwallpaper --user-data-dir=\"$HOME/.config/webdesktopwallpaper\" --app=http://localhost:3000",
+      "isBackground": true,
+      "problemMatcher": [],
+    }
+  ]
+}

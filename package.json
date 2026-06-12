@@ -12,6 +12,7 @@
     "why-is-node-running": "^3.2.2"
   },
   "scripts": {
-    "start": "serve ./src"
+    "start": "serve ./src",
+    "apply": "DISPLAY=:1 chromium --disable-dev-shm-usage  --class=webdesktopwallpaper --user-data-dir=~/.config/webdesktopwallpaper --app=http://localhost:3000"
   }
 }

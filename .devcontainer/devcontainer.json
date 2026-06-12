@@ -15,7 +15,7 @@
 	"portsAttributes": {
 		"3000": {
 			"label": "Static File Server",
-			"onAutoForward": "openBrowserOnce"
+			"onAutoForward": "silent"
 		},
 		"5901": {
 			"label": "VNC Server - TigerVNC",

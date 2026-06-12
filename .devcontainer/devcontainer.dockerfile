@@ -16,8 +16,8 @@ apt-get install -y --no-install-recommends \
 	x11-xserver-utils x11-utils x11-apps dbus-x11 xterm xauth \
 	tigervnc-standalone-server tigervnc-common \
 	fluxbox xdg-utils fbautostart \
-	fonts-dejavu xfonts-base \
-	chromium fonts-noto fonts-noto-cjk fonts-wqy-microhei libnss3 libxss1 libasound2 \
+	xfonts-base fonts-dejavu fonts-noto fonts-noto-cjk fonts-wqy-microhei \
+	chromium chromium-sandbox libnss3 libxss1 libasound2 \
 	python3-minimal python3-numpy
 rm -rf /var/lib/apt/lists/*
 EOF
@@ -35,7 +35,7 @@ mkdir -p /usr/local/novnc
 
 curl -fsSL "https://github.com/novnc/noVNC/archive/v${NOVNC_VERSION}.zip" -o /tmp/novnc.zip
 unzip /tmp/novnc.zip -d /usr/local/novnc
-cp "/usr/local/novnc/noVNC-${NOVNC_VERSION}/vnc.html" "/usr/local/novnc/noVNC-${NOVNC_VERSION}/index.html"
+cp "/usr/local/novnc/noVNC-${NOVNC_VERSION}/vnc_lite.html" "/usr/local/novnc/noVNC-${NOVNC_VERSION}/index.html"
 rm -f /tmp/novnc.zip
 
 curl -fsSL "https://github.com/novnc/websockify/archive/v${WEBSOCKIFY_VERSION}.zip" -o /tmp/websockify.zip
@@ -48,7 +48,7 @@ EOF
 
 USER vscode
 
-# 配置 VNC 启动 XFCE
+# 配置 TigerVNC
 RUN <<EOF
 touch /home/vscode/.Xauthority
 chmod 600 /home/vscode/.Xauthority
@@ -62,5 +62,9 @@ cat > /home/vscode/.config/tigervnc/xstartup <<-'EOF'
 	EOF
 chmod +x /home/vscode/.config/tigervnc/xstartup
 EOF
+
+# 配置 fluxbox
+RUN mkdir -p /home/vscode/.fluxbox
+COPY fluxbox-apps.txt /home/vscode/.fluxbox/apps
 
 CMD ["sleep", "infinity"]
