@@ -1,5 +1,4 @@
 {
-  "cmake.ignoreCMakeListsMissing": true,
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
@@ -46,5 +45,13 @@
     "editor.insertSpaces": false,
     "editor.detectIndentation": false,
     "editor.tabSize": 4
-  }
+  },
+  "[c]": {
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.formatOnSave": true,
+  },
+  "cmake.ignoreCMakeListsMissing": true,
+  "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, UseTab: Always, IndentWidth: 4, TabWidth: 4 }",
 }

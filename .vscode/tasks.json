@@ -8,12 +8,10 @@
       "problemMatcher": "$gcc",
     },
     {
-      "label": "vnc server",
-      "dependsOn": [
-        "wm build"
-      ],
+      "label": "wm run",
+      "dependsOn": "wm build",
       "type": "shell",
-      "command": "tigervncserver :1 -geometry 1280x800 -depth 24 -localhost -SecurityTypes None --I-KNOW-THIS-IS-INSECURE -fg -xstartup ./out/wm",
+      "command": "DISPLAY=:1 ./out/wm",
       "isBackground": true,
       "problemMatcher": {
         "pattern": {
@@ -24,17 +22,10 @@
         },
         "background": {
           "activeOnStart": true,
-          "beginsPattern": "^$",
-          "endsPattern": "New Xtigervnc server",
+          "beginsPattern": "^___$",
+          "endsPattern": "MiniWM started",
         },
       },
-    },
-    {
-      "label": "vnc web proxy",
-      "type": "shell",
-      "command": "novnc_proxy --listen \"localhost:6080\" --vnc \"localhost:5901\"",
-      "isBackground": true,
-      "problemMatcher": [],
     },
     {
       "label": "wallpaper serve",
@@ -57,16 +48,15 @@
     },
     {
       "label": "wallpaper open",
-      "dependsOn": [
-        "wallpaper serve",
-      ],
+      "dependsOn": "wallpaper serve",
       "type": "shell",
       "command": "DISPLAY=:1 chromium --no-sandbox --disable-dev-shm-usage --class=webdesktopwallpaper --user-data-dir=\"$HOME/.config/webdesktopwallpaper\" --app=http://localhost:3000",
       "isBackground": true,
       "problemMatcher": [],
     },
     {
-      "label": "open xterm",
+      "label": "xterm open",
+      "dependsOn": "wm run",
       "type": "shell",
       "command": "DISPLAY=:1 xterm",
       "isBackground": true,

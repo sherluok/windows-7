@@ -18,7 +18,7 @@ apt-get install -y --no-install-recommends \
 	fluxbox xdg-utils fbautostart \
 	xfonts-base fonts-dejavu fonts-noto fonts-noto-cjk fonts-wqy-microhei \
 	chromium chromium-sandbox libnss3 libxss1 libasound2 \
-	python3-minimal python3-numpy
+	python3-minimal python3-numpy \
 rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -46,6 +46,7 @@ rm -f /tmp/websockify.zip
 ln -s "/usr/local/novnc/noVNC-${NOVNC_VERSION}/utils/novnc_proxy" "/usr/local/bin"
 EOF
 
+# 安装 X11 开发环境
 RUN <<EOF
 apt-get update
 apt-get install -y --no-install-recommends libx11-dev
@@ -56,6 +57,6 @@ EOF
 COPY --chown=vscode:vscode --chmod=0700 vnc-xstartup.sh /home/vscode/.config/tigervnc/xstartup
 
 # 配置 Fluxbox
-COPY --chown=vscode:vscode fluxbox-apps.txt /home/vscode/.fluxbox/apps
+COPY --chown=vscode:vscode --chmod=0600 fluxbox-apps.txt /home/vscode/.fluxbox/apps
 
 CMD ["sleep", "infinity"]

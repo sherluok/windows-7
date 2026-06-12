@@ -23,7 +23,7 @@
 		},
 		"6080": {
 			"label": "VNC Web Proxy",
-			"onAutoForward": "openBrowserOnce"
+			"onAutoForward": "silent"
 		}
 	},
 	"customizations": {
