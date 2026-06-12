@@ -35,11 +35,16 @@
   "js/ts.tsdk.promptToUseWorkspaceVersion": true,
   "js/ts.tsdk.path": "node_modules/typescript/lib",
   "npm.packageManager": "pnpm",
-  "[powershell]": {
-    "files.encoding": "utf8bom",
-  },
   "search.useIgnoreFiles": true,
   "workbench.editorAssociations": {
     // "*.md": "vscode.markdown.preview.editor",
   },
+  "[powershell]": {
+    "files.encoding": "utf8bom",
+  },
+  "[dockerfile][shellscript]": {
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4
+  }
 }
