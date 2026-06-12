@@ -18,12 +18,19 @@
 			"onAutoForward": "silent"
 		},
 		"5901": {
-			"label": "VNC Server - TigerVNC",
+			"label": "VNC Server",
 			"onAutoForward": "silent"
 		},
 		"6080": {
-			"label": "VNC Web Proxy - noVNC",
-			"onAutoForward": "silent"
+			"label": "VNC Web Proxy",
+			"onAutoForward": "openBrowserOnce"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools-extension-pack"
+			]
 		}
 	}
 }

@@ -1,21 +1,43 @@
 {
+  "version": "2.0.0",
   "tasks": [
     {
-      "label": "tiger vnc",
+      "label": "wm build",
       "type": "shell",
-      "command": "tigervncserver :1 -geometry 1280x800 -depth 24 -localhost -SecurityTypes None --I-KNOW-THIS-IS-INSECURE -fg",
-      "isBackground": true,
-      "problemMatcher": [],
+      "command": "gcc ./wm/main.c -o ./out/wm -lX11",
+      "problemMatcher": "$gcc",
     },
     {
-      "label": "no vnc",
+      "label": "vnc server",
+      "dependsOn": [
+        "wm build"
+      ],
+      "type": "shell",
+      "command": "tigervncserver :1 -geometry 1280x800 -depth 24 -localhost -SecurityTypes None --I-KNOW-THIS-IS-INSECURE -fg -xstartup ./out/wm",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": ".",
+          "file": 1,
+          "location": 2,
+          "message": 3,
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^$",
+          "endsPattern": "New Xtigervnc server",
+        },
+      },
+    },
+    {
+      "label": "vnc web proxy",
       "type": "shell",
       "command": "novnc_proxy --listen \"localhost:6080\" --vnc \"localhost:5901\"",
       "isBackground": true,
       "problemMatcher": [],
     },
     {
-      "label": "serve wallpaper",
+      "label": "wallpaper serve",
       "type": "shell",
       "command": "pnpm exec serve ./src",
       "isBackground": true,
@@ -34,14 +56,21 @@
       },
     },
     {
-      "label": "open wallpaper",
+      "label": "wallpaper open",
       "dependsOn": [
-        "serve wallpaper",
+        "wallpaper serve",
       ],
       "type": "shell",
       "command": "DISPLAY=:1 chromium --no-sandbox --disable-dev-shm-usage --class=webdesktopwallpaper --user-data-dir=\"$HOME/.config/webdesktopwallpaper\" --app=http://localhost:3000",
       "isBackground": true,
       "problemMatcher": [],
-    }
-  ]
+    },
+    {
+      "label": "open xterm",
+      "type": "shell",
+      "command": "DISPLAY=:1 xterm",
+      "isBackground": true,
+      "problemMatcher": [],
+    },
+  ],
 }

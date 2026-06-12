@@ -46,7 +46,11 @@ rm -f /tmp/websockify.zip
 ln -s "/usr/local/novnc/noVNC-${NOVNC_VERSION}/utils/novnc_proxy" "/usr/local/bin"
 EOF
 
-# USER vscode
+RUN <<EOF
+apt-get update
+apt-get install -y --no-install-recommends libx11-dev
+rm -rf /var/lib/apt/lists/*
+EOF
 
 # 配置 TigerVNC
 COPY --chown=vscode:vscode --chmod=0700 vnc-xstartup.sh /home/vscode/.config/tigervnc/xstartup
